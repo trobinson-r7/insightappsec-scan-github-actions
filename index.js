@@ -38,7 +38,8 @@ async function performAction() {
     const scanTools = new ScanTools(new InsightAppSecClient(region, apiKey));
 
     try {
-        const scanId = await scanTools.startScan(scanConfigId);
+        // const scanId = await scanTools.startScan(scanConfigId);
+        const scanId = 'ea06e248-c927-45dd-93be-a135280876fc';
         if (!waitScanComplete) {
             core.setOutput(OUTPUT_SCAN_FINDINGS, `Scan ID: ${scanId}`);
         }
@@ -47,7 +48,7 @@ async function performAction() {
             await scanTools.pollForScanComplete(scanId);
             const result = await scanTools.getScanResultsSummary(scanId, vulnQuery);
             core.setOutput(OUTPUT_SCAN_FINDINGS, JSON.stringify({vulnerabilities: result}, null, 2));
-            if (Object.keys(result["vulnerabilities"]).length === 0){
+            if (result["vulnerabilities"] != {}){
                 core.setFailed("Vulnerabilities were found in scan. Failing.");
             }
         }
