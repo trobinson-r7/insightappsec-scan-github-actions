@@ -6116,6 +6116,9 @@ async function performAction() {
             await scanTools.pollForScanComplete(scanId);
             const result = await scanTools.getScanResultsSummary(scanId, vulnQuery);
             core.setOutput(OUTPUT_SCAN_FINDINGS, JSON.stringify({vulnerabilities: result}, null, 2));
+            if (result != {}){
+                throw Error("Vulnerabilities were found in scan. Failing.");
+            }
         }
     }
     catch(e) {
