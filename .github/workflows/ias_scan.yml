@@ -16,4 +16,4 @@ jobs:
         if: always()
         run: echo '${{ steps.my-scan.outputs.scan-findings }}'
       - name: test next
-        run: echo 'Ran next item'
+        run: echo 'Ran next item' 
