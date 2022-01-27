@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: my-scan
-        uses: trobinson-r7/insightappsec-scan-github-actions@v1.1.0-test6
+        uses: trobinson-r7/insightappsec-scan-github-actions@v1.1.0-test4
         with:
           region: "us"
           api-key: ${{ secrets.IAS_API_KEY }}
@@ -15,6 +15,6 @@ jobs:
           vuln-query: "vulnerability.severity = 'MEDIUM'"
       - name: Upload findings
         if: always()
-        run: echo '${{ steps.my-scan.outputs.scan-findings }}'
+        run: echo "${{ steps.my-scan.outputs.scan-findings }}"
       - name: test next
-        run: echo 'Ran next item'
+        run: echo "Ran next item"
